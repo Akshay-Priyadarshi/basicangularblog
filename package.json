@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "concurrently \"npm install\" \"cd frontend && npm install\"",
-    "frontend": "cd frontend && ng build --prod",
-    "backend": "nodemon server.js",
-    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+    "prestart": "npm install",
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
