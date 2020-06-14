@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
-    "start": "nodemon server.js"
+    "start": "npm install && nodemon server.js"
   },
   "keywords": [],
   "author": "",
