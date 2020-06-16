@@ -28,7 +28,18 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"));
   });
+} else if (process.env.NODE_ENV === "development") {
+  app.use(express.static(path.join(__dirname, "public")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+  });
 }
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server started at port ${port}`);
