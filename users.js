@@ -1,7 +1,7 @@
 //REQUIREMENTS
 require("dotenv").config();
 const express = require("express");
-const mongo = require("mongodb");
+const mongo = require("mongodb").MongoClient;
 const router = express.Router();
 const md5 = require("md5");
 const jwt = require("jsonwebtoken");
@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const uri = process.env.DATABASE_URL;
 
 //REGISTER USER
-router.post("/register", (req, res) => {
+router.post("/register", { useUnifiedTopology: true }, (req, res) => {
   const user = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
