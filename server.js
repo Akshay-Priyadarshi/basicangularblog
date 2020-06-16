@@ -1,9 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const apidb = require("./apidb");
 const users = require("./users");
 const bodyParser = require("body-parser");
-const port = process.env.PORT || 8080;
 const path = require("path");
+
+const port = process.env.PORT;
 
 const app = express();
 
@@ -20,15 +22,13 @@ app.use("/users", users);
 
 app.use("/posts", apidb);
 
-app.use(express.static(path.join(__dirname, "public")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "public")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
-
-// if(process.env.NODE_ENV === 'production'){
-
-// }
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server started at port ${port}`);

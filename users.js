@@ -1,15 +1,12 @@
 //REQUIREMENTS
+require("dotenv").config();
 const express = require("express");
 const mongo = require("mongodb");
 const router = express.Router();
 const md5 = require("md5");
 const jwt = require("jsonwebtoken");
-// const MongoClient = require('mongodb').MongoClient;
 
 const uri = process.env.DATABASE_URL;
-
-//MONGO LOCAL URI
-// const uri = "mongodb://localhost:27017/postDB";
 
 //REGISTER USER
 router.post("/register", (req, res) => {
